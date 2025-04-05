@@ -9,6 +9,11 @@ public class PlayerMovement3 : MonoBehaviour
   private Rigidbody2D rb;
   private Vector2 moveInput;
 
+  [SerializeField] private float leftLimit;
+  [SerializeField] private float rightLimit;
+  [SerializeField] private float bottomLimit;
+  [SerializeField] private float topLimit;
+
 
   void Start()
   {
@@ -27,6 +32,7 @@ public class PlayerMovement3 : MonoBehaviour
   void FixedUpdate()
   {
     rb.MovePosition(rb.position + moveInput * speed * Time.fixedDeltaTime);
+    transform.position = new Vector3(Mathf.Clamp(transform.position.x, leftLimit, rightLimit), Mathf.Clamp(transform.position.y, bottomLimit, topLimit), transform.position.z);
   }
 }
 
